@@ -25,6 +25,7 @@ bool Game::getGameOver() {
 void Game::setGameOver(bool over) {
     gameOver = over;
 }
+//displays board game from game class 
 void Game::showGame() {
     tictactoe->displayBoard();
 }
@@ -36,38 +37,32 @@ int Game:: playerTurn(Player *p) {
     } else 
         return playerTurn(p);         
 }
+//function to check board to see if there is a winner or the board is filled 
+void Game::checkBoard(Player *p) {
+    int position = playerTurn(p);
+    if(tictactoe->checkVictory(p->getLetter(), position)) {
+        gameOver = true;
+        cout <<  p->getName() << " is victorious" << endl;
+    }
+    if(tictactoe->isFilled() && !gameOver) {
+        cout << "Game Over, no one wins" << endl;
+        gameOver = true;
+    }
+    tictactoe->displayBoard();
+}
 void Game::start() {
-    int position = 0;
     p1->setTurn(true);  //player one will always go first
     while(!gameOver) {
         if(p1->getTurn()) {
-            position = playerTurn(p1);
             p1->setTurn(false);
-            if(tictactoe->checkVictory(p1->getLetter(), position)) {
-                gameOver = true;
-                cout <<  p1->getName() << " is victorious" << endl;
-            }
-            if(tictactoe->isFilled() && !gameOver) {
-                cout << "Game Over, no one wins" << endl;
-                gameOver = true;
-            }
-            tictactoe->displayBoard();
+            checkBoard(p1);
         } else {
-            position = playerTurn(p2);
             p1->setTurn(true);
-            if(tictactoe->checkVictory(p2->getLetter(), position)) {
-                gameOver = true;
-                cout << p2->getName() << " is victorious" << endl;
-            }
-            if(tictactoe->isFilled() && !gameOver) {
-                cout << "Game Over, no one wins" << endl;
-                gameOver = true;
-            }
-            tictactoe->displayBoard();
+            checkBoard(p2);
         }
     }
 }
-
+//destructor to free up memory space 
 Game::~Game() {
     delete p1;
     delete p2;

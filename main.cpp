@@ -36,6 +36,11 @@ int main() {
         Game *g = new Game(players[0], players[1]);
         g->showGame();
         g->start();
+    } else {
+        Player *computer = new Player("Computer",'o');
+        Game *g = new Game(players[0], computer);
+        g->showGame();
+        g->start();
     }
 }
 

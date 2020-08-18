@@ -16,10 +16,10 @@ using namespace std;
 
 class Player {
     private:
-        string name;
-        bool turn;
-        int move_input;
-        char letter;
+        string name;                //name of the player
+        bool turn;                  //to show if it is Player's turn or not
+        int move_input;             //Player's input to indicate their move for tictactoe
+        char letter;                //their letter, either 'x' or 'o'
     public:
         Player();                   //no argument constructor
         Player(string n, char l);           //name argument constructor
