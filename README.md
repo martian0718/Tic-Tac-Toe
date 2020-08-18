@@ -2,7 +2,7 @@
 
 TicTacToe made using OOP concepts and C++ 
 
-2 Players -> Working
+2 Players -> Working<br/>
 1 Player -> Currently being implemented...
 
 Demo: 
